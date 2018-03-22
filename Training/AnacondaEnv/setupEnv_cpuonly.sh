@@ -37,6 +37,7 @@ function run_setup()
         fi
     fi
 
+    echo "raw path: $1"
     INSTALL_DIR=`readlink -e $1`
 
     if [ -d "$1" ]; then
@@ -81,8 +82,6 @@ function run_setup()
     echo "export PATH="$INSTALL_DIR"/miniconda/bin:\$PATH" > $SCRIPT_DIR/env.sh
     echo "export LD_PRELOAD=$CONDA_PREFIX/lib/libmkl_core.so:$CONDA_PREFIX/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env.sh
 }
-
-echo $1
 
 run_setup $1
 
