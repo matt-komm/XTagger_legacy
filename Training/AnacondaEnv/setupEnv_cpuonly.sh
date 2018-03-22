@@ -28,9 +28,13 @@ function run_setup()
         return 1
     fi
 
-    if [[ `uname -r` != *".el7."* ]]; then
-        echo "EL 7 required - try different node!, e.g. lx03 (imperial) or lxplus005 (CERN)"
-        return 1
+    dist=`grep DISTRIB_ID /etc/*-release | awk -F '=' '{print $2}'`
+
+    if [ "$dist" != "Ubuntu" ]; then
+        if [[ `uname -r` != *".el7."* ]]; then
+            echo "EL 7 required - try different node!, e.g. lx03 (imperial) or lxplus005 (CERN)"
+            return 1
+        fi
     fi
 
     INSTALL_DIR=`realpath $1`
