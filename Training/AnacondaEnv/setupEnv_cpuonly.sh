@@ -24,7 +24,7 @@ function run_setup()
 {
     if [[  -z  $1  ]] ; then
         echo 'Usage:'
-        echo '  setupCentralEnv.sh <install_dir>'
+        echo '  setupEnv_cpuonly.sh <install_dir>'
         return 1
     fi
 
@@ -81,6 +81,8 @@ function run_setup()
     echo "export PATH="$INSTALL_DIR"/miniconda/bin:\$PATH" > $SCRIPT_DIR/env.sh
     echo "export LD_PRELOAD=$CONDA_PREFIX/lib/libmkl_core.so:$CONDA_PREFIX/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env.sh
 }
+
+echo $1
 
 run_setup $1
 
