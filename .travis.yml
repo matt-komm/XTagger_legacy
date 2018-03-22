@@ -2,8 +2,6 @@ sudo: required
 language: cpp
 compiler:
   - gcc
-before_script:
-  - sudo apt-get install coreutils
 jobs:
   include:
     - stage: AnacondaEnv

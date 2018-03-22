@@ -37,7 +37,7 @@ function run_setup()
         fi
     fi
 
-    INSTALL_DIR=`realpath $1`
+    INSTALL_DIR=`readlink -e $1`
 
     if [ -d "$1" ]; then
         echo "Error - directory "$INSTALL_DIR" exists!"
