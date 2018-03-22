@@ -1,0 +1,17 @@
+language: cpp
+compiler:
+  - gcc
+jobs:
+  include:
+    - stage: AnacondaEnv
+      script: Tests/Training/AnacondaEnv/testSetupCpuEnv.sh
+  only:
+    - master
+notifications:
+  email:
+    recipients:
+      - mkomm@cern.ch
+    on_success: change
+    on_failure: always
+
+
