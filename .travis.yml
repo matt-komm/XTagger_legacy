@@ -6,6 +6,8 @@ jobs:
   include:
     - stage: AnacondaEnv
       script: Tests/Training/AnacondaEnv/testSetupCpuEnv.sh
+    - stage: Ops
+      script: Tests/Training/Ops/buildOps.sh
   only:
     - master
 notifications:
