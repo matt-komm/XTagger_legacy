@@ -1,6 +1,7 @@
 
 function execute() 
 {
+    source activate tf_cpu || return 1
     mkdir Training/Ops/build || return 1
     cd Training/Ops/build || return 1
     cmake .. || return 1

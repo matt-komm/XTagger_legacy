@@ -2,14 +2,9 @@ sudo: required
 language: cpp
 compiler:
   - gcc
-jobs:
-  include:
-    - stage: AnacondaEnv
-      script: Tests/Training/AnacondaEnv/testSetupCpuEnv.sh
-    - stage: Ops
-      script: Tests/Training/Ops/buildOps.sh
-  only:
-    - master
+script:
+   - Tests/Training/AnacondaEnv/testSetupCpuEnv.sh
+   - Tests/Training/Ops/buildOps.sh
 notifications:
   email:
     recipients:

@@ -84,12 +84,12 @@ function run_setup()
     conda install -c nlesc root-numpy=4.4.0 --yes || return 1
     conda install -c conda-forge boost=1.64.0 --yes || return 1
     pip install --no-cache-dir -r packages_gpu.pip || return 1
-    source deactivate || return 1
-    
-    rm -rf $INSTALL_DIR/tmp
     
     echo "export PATH="$INSTALL_DIR"/miniconda/bin:\$PATH" > $SCRIPT_DIR/env.sh
     echo "export LD_PRELOAD=$CONDA_PREFIX/lib/libmkl_core.so:$CONDA_PREFIX/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env.sh
+
+    source deactivate || return 1
+    rm -rf $INSTALL_DIR/tmp
 }
 
 run_setup $1
