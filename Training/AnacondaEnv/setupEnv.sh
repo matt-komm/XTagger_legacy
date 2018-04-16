@@ -79,7 +79,7 @@ function run_setup()
     
     
     echo "export PATH="$INSTALL_ABSDIR"/miniconda/bin:\$PATH" > $SCRIPT_DIR/env_cpu.sh
-    echo "export LD_PRELOAD=$CONDA_PREFIX/lib/libmkl_core.so:$CONDA_PREFIX/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_cpu.sh
+    echo "export LD_PRELOAD="$INSTALL_ABSDIR"/miniconda/lib/libmkl_core.so:"$INSTALL_ABSDIR"/miniconda/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_cpu.sh
     echo "source activate tf_gpu" >> $SCRIPT_DIR/env_cpu.sh
 
     source deactivate || return 1
@@ -96,7 +96,7 @@ function run_setup()
     pip install --no-cache-dir -r packages_gpu.pip || return 1
     
     echo "export PATH="$INSTALL_ABSDIR"/miniconda/bin:\$PATH" > $SCRIPT_DIR/env_gpu.sh
-    echo "export LD_PRELOAD=$CONDA_PREFIX/lib/libmkl_core.so:$CONDA_PREFIX/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_gpu.sh
+    echo "export LD_PRELOAD="$INSTALL_ABSDIR"/miniconda/lib/libmkl_core.so:"$INSTALL_ABSDIR"/miniconda/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_gpu.sh
     echo "source activate tf_gpu" >> $SCRIPT_DIR/env_gpu.sh
     
     source deactivate || return 1
