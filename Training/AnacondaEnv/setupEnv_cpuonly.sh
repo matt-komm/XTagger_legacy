@@ -90,7 +90,7 @@ function run_setup()
 
 }
 
-exit run_setup $1
+run_setup $1
 
 
 
