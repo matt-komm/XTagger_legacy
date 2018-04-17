@@ -60,7 +60,7 @@ function run_setup()
     CONDA_BIN=$INSTALL_ABSDIR/miniconda/bin
     export PATH=$CONDA_BIN:$PATH
     
-    conda update -n base conda || return 1
+    conda update -n base conda --yes || return 1
     
     export TMPDIR=$INSTALL_ABSDIR/tmp
     export TMPPATH=$TMPDIR
