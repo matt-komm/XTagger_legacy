@@ -82,14 +82,14 @@ function run_setup()
     
     echo "Installing packages"
     source activate tf_cpu || return 1
-    conda install cmake=3.9.4 --yes || return 1
+    conda install -c conda-forge cmake --yes || return 1
     conda install -c nlesc root-numpy=4.4.0 --yes || return 1
     conda install -c conda-forge boost=1.64.0 --yes || return 1
     pip install --no-cache-dir -r $SCRIPT_DIR/packages_cpu.pip || return 1
     
     
     echo "export PATH="$INSTALL_ABSDIR"/miniconda/bin:\$PATH" > $SCRIPT_DIR/env_cpu.sh
-    echo "export LD_PRELOAD="$INSTALL_ABSDIR"/miniconda/lib/libmkl_core.so:"$INSTALL_ABSDIR"/miniconda/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_cpu.sh
+    #echo "export LD_PRELOAD="$INSTALL_ABSDIR"/miniconda/lib/libmkl_core.so:"$INSTALL_ABSDIR"/miniconda/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_cpu.sh
     echo "source activate tf_cpu" >> $SCRIPT_DIR/env_cpu.sh
 
     conda list
@@ -110,7 +110,7 @@ function run_setup()
     
     echo "Installing packages"
     source activate tf_gpu || return 1
-    conda install cmake=3.9.4 --yes || return 1
+    conda install -c conda-forge cmake --yes || return 1
     conda install -c nlesc root-numpy=4.4.0 --yes || return 1
     conda install -c conda-forge boost=1.64.0 --yes || return 1
     pip install --no-cache-dir -r packages_gpu.pip || return 1

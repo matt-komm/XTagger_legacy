@@ -82,7 +82,7 @@ function run_setup()
     
     echo "Installing packages"
     source activate tf_cpu || return 1
-    conda install cmake=3.9.4 --yes || return 1
+    conda install -c conda-forge cmake --yes || return 1
     conda install -c nlesc root-numpy=4.4.0 --yes || return 1
     conda install -c conda-forge boost=1.64.0 --yes || return 1
     pip install --no-cache-dir -r $SCRIPT_DIR/packages_cpu.pip || return 1
