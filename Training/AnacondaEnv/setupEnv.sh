@@ -108,7 +108,7 @@ function run_setup()
     rm -rf $INSTALL_DIR/tmp
 }
 
-exit run_setup $1
+run_setup $1
 
 
 
