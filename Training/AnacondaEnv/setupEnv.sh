@@ -82,6 +82,8 @@ function run_setup()
     echo "export LD_PRELOAD="$INSTALL_ABSDIR"/miniconda/lib/libmkl_core.so:"$INSTALL_ABSDIR"/miniconda/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_cpu.sh
     echo "source activate tf_gpu" >> $SCRIPT_DIR/env_cpu.sh
 
+    conda list
+    pip list
     source deactivate || return 1
     
     
@@ -99,11 +101,14 @@ function run_setup()
     echo "export LD_PRELOAD="$INSTALL_ABSDIR"/miniconda/lib/libmkl_core.so:"$INSTALL_ABSDIR"/miniconda/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_gpu.sh
     echo "source activate tf_gpu" >> $SCRIPT_DIR/env_gpu.sh
     
+    conda list
+    pip list
+    
     source deactivate || return 1
     rm -rf $INSTALL_DIR/tmp
 }
 
-run_setup $1
+exit run_setup $1
 
 
 
