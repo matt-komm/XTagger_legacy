@@ -75,9 +75,9 @@ function run_setup()
     source activate tf_cpu || return 1
     
     echo "Installing compilers"
-    conda install gcc_linux-64 --yes || return 1
-    conda install gxx_linux-64 --yes || return 1
-    conda install gfortran_linux-64 --yes || return 1
+    #conda install gcc_linux-64 --yes || return 1
+    conda install -c anaconda gxx_linux-64 --yes || return 1
+    #conda install gfortran_linux-64 --yes || return 1
     source deactivate || return 1
     
     echo "Installing packages"
