@@ -74,7 +74,15 @@ function run_setup()
     conda create -n tf_cpu python=2.7 --yes || return 1
     source activate tf_cpu || return 1
     
+    echo "Installing compilers"
+    conda install gcc_linux-64 --yes || return 1
+    conda install gxx_linux-64 --yes || return 1
+    conda install gfortran_linux-64 --yes || return 1
+    source deactivate || return 1
+    
     echo "Installing packages"
+    source activate tf_cpu || return 1
+    conda install cmake=3.11.0 --yes || return 1
     conda install -c nlesc root-numpy=4.4.0 --yes || return 1
     conda install -c conda-forge boost=1.64.0 --yes || return 1
     pip install --no-cache-dir -r $SCRIPT_DIR/packages_cpu.pip || return 1
@@ -82,7 +90,7 @@ function run_setup()
     
     echo "export PATH="$INSTALL_ABSDIR"/miniconda/bin:\$PATH" > $SCRIPT_DIR/env_cpu.sh
     echo "export LD_PRELOAD="$INSTALL_ABSDIR"/miniconda/lib/libmkl_core.so:"$INSTALL_ABSDIR"/miniconda/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_cpu.sh
-    echo "source activate tf_gpu" >> $SCRIPT_DIR/env_cpu.sh
+    echo "source activate tf_cpu" >> $SCRIPT_DIR/env_cpu.sh
 
     conda list
     pip list
@@ -94,7 +102,15 @@ function run_setup()
     conda create -n tf_gpu python=2.7 --yes || return 1
     source activate tf_gpu || return 1
     
+    echo "Installing compilers"
+    conda install gcc_linux-64 --yes || return 1
+    conda install gxx_linux-64 --yes || return 1
+    conda install gfortran_linux-64 --yes || return 1
+    source deactivate || return 1
+    
     echo "Installing packages"
+    source activate tf_gpu || return 1
+    conda install cmake=3.11.0 --yes || return 1
     conda install -c nlesc root-numpy=4.4.0 --yes || return 1
     conda install -c conda-forge boost=1.64.0 --yes || return 1
     pip install --no-cache-dir -r packages_gpu.pip || return 1
