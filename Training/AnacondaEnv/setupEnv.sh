@@ -54,11 +54,13 @@ function run_setup()
         return 1
     fi
 
-    execute wget -P $INSTALL_ABSDIR https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh || return 1
-    execute bash $INSTALL_ABSDIR/Miniconda3-latest-Linux-x86_64.sh -b -s -p $INSTALL_ABSDIR/miniconda || return 1
+    execute wget -P $INSTALL_ABSDIR https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh || return 1
+    execute bash $INSTALL_ABSDIR/Miniconda2-latest-Linux-x86_64.sh -b -s -p $INSTALL_ABSDIR/miniconda || return 1
 
     CONDA_BIN=$INSTALL_ABSDIR/miniconda/bin
     export PATH=$CONDA_BIN:$PATH
+    
+    conda update -n base conda || return 1
     
     export TMPDIR=$INSTALL_ABSDIR/tmp
     export TMPPATH=$TMPDIR
