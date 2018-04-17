@@ -82,6 +82,10 @@ function run_setup()
     
     echo "Installing packages"
     source activate tf_cpu || return 1
+    which gcc
+    which g++
+    gcc -dumpversion
+    g++ -dumpversion
     conda install -c conda-forge cmake --yes || return 1
     conda install -c nlesc root-numpy=4.4.0 --yes || return 1
     conda install -c conda-forge boost=1.64.0 --yes || return 1
