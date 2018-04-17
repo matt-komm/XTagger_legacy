@@ -60,7 +60,7 @@ function run_setup()
     CONDA_BIN=$INSTALL_ABSDIR/miniconda/bin
     export PATH=$CONDA_BIN:$PATH
     
-    conda update -n base conda --yes || return 1
+    #conda update -n base conda --yes || return 1
     
     export TMPDIR=$INSTALL_ABSDIR/tmp
     export TMPPATH=$TMPDIR
@@ -75,8 +75,8 @@ function run_setup()
     source activate tf_cpu || return 1
     
     echo "Installing compilers"
-    conda install -c anaconda gcc_linux-64 --yes || return 1
-    conda install -c anaconda gxx_linux-64 --yes || return 1
+    #conda install -c anaconda gcc_linux-64 --yes || return 1
+    #conda install -c anaconda gxx_linux-64 --yes || return 1
     #conda install gfortran_linux-64 --yes || return 1
     source deactivate || return 1
     
