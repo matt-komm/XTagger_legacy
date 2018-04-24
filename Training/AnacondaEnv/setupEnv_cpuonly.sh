@@ -43,7 +43,7 @@ function run_setup()
         echo "Error - directory "$INSTALL_DIR" exists!"
         return 1
     fi
-    echo "Setting up central environment for training under "$INSTALL_DIR
+    echo "STATUS: Setting up central environment under "$INSTALL_DIR
 
     execute mkdir $INSTALL_DIR || return 1
     
@@ -68,38 +68,24 @@ function run_setup()
     mkdir $TMPDIR
    
     
-    echo "Create environment for CPU"
-    echo -en "travis_fold:start:create_env\\r"
+    echo "STATUS: Create environment for CPU"
     #rm -f /tmp/*
     
     conda create -n tf_cpu python=2.7 --yes || return 1
     source activate tf_cpu || return 1
     
-    
-    
-    echo "Installing compilers"
-    #conda install -c anaconda gcc_linux-64 --yes || return 1
-    #conda install -c anaconda gxx_linux-64 --yes || return 1
-    #conda install gfortran_linux-64 --yes || return 1
-    source deactivate || return 1
-    
-    echo "Installing packages"
-    source activate tf_cpu || return 1
     #pip install tensorflow==1.6.0 || return 1
     #conda install -c conda-forge cmake --yes || return 1
     #conda install -c nlesc root-numpy=4.4.0 --yes || return 1
     #conda install -c conda-forge boost=1.64.0 --yes || return 1
-    pip install --no-cache-dir -r $SCRIPT_DIR/packages_cpu.pip || return 1
+    echo "STATUS: Installing root"
     conda install -c nlesc root-numpy=4.4.0 --yes || return 1
+    echo "STATUS: Installing pip packages"
+    pip install --no-cache-dir -r $SCRIPT_DIR/packages_cpu.pip || return 1
     
     echo "export PATH="$INSTALL_ABSDIR"/miniconda/bin:\$PATH" > $SCRIPT_DIR/env_cpu.sh
     #echo "export LD_PRELOAD="$INSTALL_ABSDIR"/miniconda/lib/libmkl_core.so:"$INSTALL_ABSDIR"/miniconda/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_cpu.sh
     echo "source activate tf_cpu" >> $SCRIPT_DIR/env_cpu.sh
-    
-    echo -en "travis_fold:end:create_env\\r"
-    
-    conda list
-    pip list
 
     source deactivate || return 1
     
