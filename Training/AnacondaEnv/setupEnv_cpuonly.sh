@@ -69,10 +69,13 @@ function run_setup()
    
     
     echo "Create environment for CPU"
+    echo "travis_fold:start:create_env"
     #rm -f /tmp/*
     
     conda create -n tf_cpu python=2.7 --yes || return 1
     source activate tf_cpu || return 1
+    
+    
     
     echo "Installing compilers"
     #conda install -c anaconda gcc_linux-64 --yes || return 1
@@ -92,6 +95,8 @@ function run_setup()
     echo "export PATH="$INSTALL_ABSDIR"/miniconda/bin:\$PATH" > $SCRIPT_DIR/env_cpu.sh
     #echo "export LD_PRELOAD="$INSTALL_ABSDIR"/miniconda/lib/libmkl_core.so:"$INSTALL_ABSDIR"/miniconda/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_cpu.sh
     echo "source activate tf_cpu" >> $SCRIPT_DIR/env_cpu.sh
+    
+    echo "travis_fold:end:create_env"
     
     conda list
     pip list
