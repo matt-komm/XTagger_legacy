@@ -11,7 +11,7 @@ addons:
         - g++-5
 script:
    - Tests/Training/AnacondaEnv/testSetupCpuEnv.sh
-   - Tests/Training/Ops/buildOps.sh
+   #- Tests/Training/Ops/buildOps.sh
 notifications:
   email:
     recipients:

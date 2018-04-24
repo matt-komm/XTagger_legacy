@@ -82,14 +82,11 @@ function run_setup()
     
     echo "Installing packages"
     source activate tf_cpu || return 1
-    which gcc
-    which g++
-    gcc -dumpversion
-    g++ -dumpversion
-    conda install -c conda-forge cmake --yes || return 1
-    conda install -c nlesc root-numpy=4.4.0 --yes || return 1
-    conda install -c conda-forge boost=1.64.0 --yes || return 1
-    pip install --no-cache-dir -r $SCRIPT_DIR/packages_cpu.pip || return 1
+    pip install tensorflow==1.6.0 || return 1
+    #conda install -c conda-forge cmake --yes || return 1
+    #conda install -c nlesc root-numpy=4.4.0 --yes || return 1
+    #conda install -c conda-forge boost=1.64.0 --yes || return 1
+    #pip install --no-cache-dir -r $SCRIPT_DIR/packages_cpu.pip || return 1
     
     echo "export PATH="$INSTALL_ABSDIR"/miniconda/bin:\$PATH" > $SCRIPT_DIR/env_cpu.sh
     #echo "export LD_PRELOAD="$INSTALL_ABSDIR"/miniconda/lib/libmkl_core.so:"$INSTALL_ABSDIR"/miniconda/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_cpu.sh
@@ -107,15 +104,3 @@ function run_setup()
 run_setup $1
 
 
-
-#export PATH=$CONDA_BIN:$PATH
-
-#git clone https://github.com/matt-komm/DeepJet.git
-
-#cd DeepJet/environment
-
-#echo "Setting up CPU usage"
-#./setupEnv.sh deepjetLinux3.conda
-
-#echo "Setting up GPU usage"
-#./setupEnv.sh deepjetLinux3.conda gpu
