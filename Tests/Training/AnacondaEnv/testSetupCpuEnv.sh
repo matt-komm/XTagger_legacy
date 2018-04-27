@@ -9,7 +9,7 @@ function execute()
       tail -n 300 env.build
       return 1
     fi
-    ll -h Training/AnacondaEnv
+    ls -lh Training/AnacondaEnv
     source Training/AnacondaEnv/env_cpu.sh || return 1
     source activate tf_cpu || return 1
     python Tests/Training/AnacondaEnv/testKeras.py || return 1
