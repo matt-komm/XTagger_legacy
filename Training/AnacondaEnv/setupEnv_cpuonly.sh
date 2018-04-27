@@ -83,7 +83,7 @@ function run_setup()
     echo "STATUS: Installing pip packages"
     pip install --no-cache-dir -r $SCRIPT_DIR/packages_cpu.pip || return 1
     
-    cat > $SCRIPT_DIR/env_cpu.sh <<END \
+    cat > $SCRIPT_DIR/env_cpu.sh << END 
     export PATH="$INSTALL_ABSDIR"/miniconda/bin:\$PATH
     source activate tf_cpu
     END
