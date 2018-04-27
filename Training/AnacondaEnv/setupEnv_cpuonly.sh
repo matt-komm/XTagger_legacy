@@ -22,6 +22,7 @@ function execute()
 
 function run_setup()
 {
+    echo "STATUS: Script directory "$SCRIPT_DIR
     if [[  -z  $1  ]] ; then
         echo 'Usage:'
         echo '  setupEnv_cpuonly.sh <install_dir>'
@@ -83,11 +84,11 @@ function run_setup()
     echo "STATUS: Installing pip packages"
     pip install --no-cache-dir -r $SCRIPT_DIR/packages_cpu.pip || return 1
     
-    echo "export PATH="$INSTALL_ABSDIR"/miniconda/bin:\$PATH" > $SCRIPT_DIR/env_cpu.sh
+    echo "export PATH="$INSTALL_ABSDIR"/miniconda/bin:\$PATH" > env_cpu.sh
     #echo "export LD_PRELOAD="$INSTALL_ABSDIR"/miniconda/lib/libmkl_core.so:"$INSTALL_ABSDIR"/miniconda/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_cpu.sh
-    echo "source activate tf_cpu" >> $SCRIPT_DIR/env_cpu.sh
+    echo "source activate tf_cpu" >> env_cpu.sh
 
-    echo "STATUS: Create script for environment: "$SCRIPT_DIR/env_cpu.sh" "`ll $SCRIPT_DIR/env_cpu.sh`
+    echo "STATUS: Create script for environment: env_cpu.sh "`ll env_cpu.sh`
 
     source deactivate || return 1
     
