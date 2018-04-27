@@ -83,10 +83,13 @@ function run_setup()
     echo "STATUS: Installing pip packages"
     pip install --no-cache-dir -r $SCRIPT_DIR/packages_cpu.pip || return 1
     
-    echo "export PATH="$INSTALL_ABSDIR"/miniconda/bin:\$PATH" > $SCRIPT_DIR/env_cpu.sh
-    #echo "export LD_PRELOAD="$INSTALL_ABSDIR"/miniconda/lib/libmkl_core.so:"$INSTALL_ABSDIR"/miniconda/lib/libmkl_sequential.so:\$LD_PRELOAD" >> $SCRIPT_DIR/env_cpu.sh
-    echo "source activate tf_cpu" >> $SCRIPT_DIR/env_cpu.sh
+    cat > $SCRIPT_DIR/env_cpu.sh <<END \
+    export PATH="$INSTALL_ABSDIR"/miniconda/bin:\$PATH
+    source activate tf_cpu
+    END
+    
 
+    return 1
     source deactivate || return 1
     
     rm -rf $INSTALL_ABSDIR/tmp
