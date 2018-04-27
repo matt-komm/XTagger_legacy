@@ -89,7 +89,6 @@ function run_setup()
 
     echo "STATUS: Create script for environment: "$SCRIPT_DIR/env_cpu.sh" "`ll $SCRIPT_DIR/env_cpu.sh`
 
-    return 1
     source deactivate || return 1
     
     rm -rf $INSTALL_ABSDIR/tmp
