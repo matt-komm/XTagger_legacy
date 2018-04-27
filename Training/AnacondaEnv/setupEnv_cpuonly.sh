@@ -2,14 +2,14 @@
 
 SCRIPT_DIR=`dirname ${BASH_SOURCE[0]}`
 STOP=""
-
+echo "Script directory "$SCRIPT_DIR
 LOGFILE=$SCRIPT_DIR/env.log
 echo "Setup run at "`date` > $LOGFILE
-echo "STATUS: Create log file "$LOGFILE
+echo "Create log file "$LOGFILE
 
 function run_setup()
 {
-    echo "STATUS: Script directory "$SCRIPT_DIR
+    
     
     if [[  -z  $1  ]] ; then
         echo 'Usage:'
@@ -70,10 +70,11 @@ function run_setup()
     #conda install -c conda-forge cmake --yes || return 1
     #conda install -c nlesc root-numpy=4.4.0 --yes || return 1
     #conda install -c conda-forge boost=1.64.0 --yes || return 1
-    echo "Installing root"
-    conda install -c nlesc root-numpy=4.4.0 --yes &>> $LOGFILE || return 1
+    
     echo "Installing pip packages"
     pip install --no-cache-dir -r $SCRIPT_DIR/packages_cpu.pip &>> $LOGFILE || return 1
+    echo "Installing root"
+    conda install -c nlesc root-numpy=4.4.0 --yes &>> $LOGFILE || return 1
     
     echo "Generate setup script"
     echo "export PATH="$INSTALL_ABSDIR"/miniconda/bin:\$PATH" > env_cpu.sh
