@@ -35,7 +35,7 @@ function run_setup()
     echo "Setting up central environment under "$INSTALL_DIR
     
 
-    execute mkdir $INSTALL_DIR || return 1
+    mkdir $INSTALL_DIR || return 1
     
     
     
@@ -46,8 +46,8 @@ function run_setup()
         return 1
     fi
 
-    execute wget -P $INSTALL_ABSDIR https://repo.continuum.io/miniconda/Miniconda2-4.3.31-Linux-x86_64.sh &>> $LOGFILE || return 1
-    execute bash $INSTALL_ABSDIR/Miniconda2-4.3.31-Linux-x86_64.sh -b -s -p $INSTALL_ABSDIR/miniconda &>> $LOGFILE || return 1
+    wget -P $INSTALL_ABSDIR https://repo.continuum.io/miniconda/Miniconda2-4.3.31-Linux-x86_64.sh &>> $LOGFILE || return 1
+    bash $INSTALL_ABSDIR/Miniconda2-4.3.31-Linux-x86_64.sh -b -s -p $INSTALL_ABSDIR/miniconda &>> $LOGFILE || return 1
 
     CONDA_BIN=$INSTALL_ABSDIR/miniconda/bin
     export PATH=$CONDA_BIN:$PATH
